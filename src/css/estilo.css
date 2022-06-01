@@ -158,7 +158,12 @@ main {
   height: 3rem; }
 
 .notificacion {
-  font-size: 0.7rem; }
+  position: relative;
+  font-size: 0.5rem; 
+  left: -10px;
+  bottom: -7px;
+
+}
 
 .sinProducto {
   margin-top: 5rem; }

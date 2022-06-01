@@ -1,5 +1,5 @@
 import logoInicio from '../../images/logo.png'
-import { BsCartCheck } from "react-icons/bs";
+import CartWidget from '../cartWidget/CartWidget';
 
 function NavBar() {
     const home = '../src/index'
@@ -29,7 +29,7 @@ function NavBar() {
                                 <a className="nav-link navHover  txtColor" href={home}>Contacto</a>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link navHover txtColorCarrito carrito" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"> <BsCartCheck/><span id="cantidadEnCarrito" className="badge rounded-pill bg-danger notificacion">0</span></a>                            
+                                <CartWidget/>                            
                             </li>
                         </ul>
                     </div>
