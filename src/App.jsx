@@ -5,7 +5,7 @@ import NavBar from './components/navBar/NavBar'
 import ItemListContainer from './components/itemListContainer/ItemListContainer';
 
 function App() {
-  let saludo = 'Bienvenidos al entregable "Crea tu landing"'
+  let saludo = 'Encontrá el medicamento'
   return (
     <>
     <NavBar />

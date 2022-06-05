@@ -68,7 +68,26 @@
   background-color: #AEA4F2;
   color: #fff;
   cursor: pointer; }
+.botonPersonalizado2, .botonPersonalizado2:hover {
+  margin-top: 4rem;
+  margin-bottom: 1rem;
+  text-align: center;
+  font-size: 1.5rem;
+  border: 2px solid #AEA4F2;
+  background-color: #fff;
+  color: #111;
+  cursor: pointer;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  text-decoration: none; }
 
+.botonPersonalizado2:hover {
+  border: 2px solid #AEA4F2;
+  background-color: #AEA4F2;
+  color: #fff;
+  cursor: pointer; }
 main {
   margin-top: 10rem;
   margin-bottom: 4rem; }

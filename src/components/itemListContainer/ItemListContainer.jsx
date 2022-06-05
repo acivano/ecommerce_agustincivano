@@ -1,9 +1,17 @@
+import ItemList from "../itemList/ItemList"
 
 const ItemListContainer = ({titulo}) => {
     return (
-        <main className=" d-flex align-items-end">
-            <h1 className="ms-3 mb-5 fw-bold" id="main">{titulo}</h1>
-        </main> 
+        <main>
+            <div className="d-flex justify-content-center">
+                <h1 className="container">{titulo}</h1>
+            </div>
+            <section  className="container seccionDonacion">
+                <div id="contenedorPadre" className="">
+                    <ItemList/>
+                </div>
+            </section>
+        </main>
     )
 }
 
