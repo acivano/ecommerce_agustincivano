@@ -1,6 +1,7 @@
 import logoInicio from '../../images/logo.png'
 import CartWidget from '../cartWidget/CartWidget';
 
+
 function NavBar() {
     const home = '../src/index'
     return (

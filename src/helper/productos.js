@@ -135,10 +135,14 @@ export function redondeo(numero) {
     });; 
 };
 
-export const productosPromise = () => {
+export const productosPromise = (id, tipo, ) => {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
-            resolve(productosResponse);
+            if (id) {
+                resolve(productosResponse.find(prod => prod.id=== id))
+            }else{
+                resolve(productosResponse);
+            }
             //reject('Error desconocido');
         }, 3000);
     });

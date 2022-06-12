@@ -1,7 +1,13 @@
 import { useState } from "react"
 
-function ItemCount ({producto, initial, muestroConsola}) {
+function ItemCount ({producto}) {
+    const initial= 1
     const [count, setCount] = useState(initial)
+
+    function mostrar(idProducto, count){
+        console.log(`Se ha guardado ${count} unidad/uidades del item: '${idProducto}' en el carrito `)
+    }
+
 
     const sumar = ()=> {
         if (count < producto.stockdisponible) {
@@ -24,7 +30,7 @@ function ItemCount ({producto, initial, muestroConsola}) {
                         <button onClick={sumar} className="botonPersonalizado2 mt-1"> + </button>
                     </div>
                 </div>
-                <button onClick={() => muestroConsola(producto.id,count)}  className="botonPersonalizado mt-1">Agregar</button>
+                <button onClick={mostrar(producto.id,count)}  className="botonPersonalizado mt-1">Agregar</button>
             </>
         )
     }
