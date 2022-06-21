@@ -1,5 +1,6 @@
 import logoInicio from '../../images/logo.png'
 import CartWidget from '../cartWidget/CartWidget';
+import { Link } from 'react-router-dom';
 
 
 function NavBar() {
@@ -15,19 +16,19 @@ function NavBar() {
                     <div className="collapse navbar-collapse" id="navbarNav">
                         <ul className="navbar-nav justify-content-end w-100 align-items-center">
                             <li className="nav-item ">
-                                <a className="nav-link navHover txtColor" href={home}>Home</a>
+                                <Link to='/' className="nav-link navHover txtColor">Home</Link>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link navHover  txtColor" href={home}>Quiero Adoptar</a>
+                                <Link to='/' className="nav-link navHover  txtColor">Quiero Adoptar</Link>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link navHover  txtColor" href={home} >Tienda medicamentos</a>
+                                <Link to='/' className="nav-link navHover  txtColor" >Tienda medicamentos</Link>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link navHover  txtColor" href={home}>Quienes somos</a>
+                                <Link to='/' className="nav-link navHover  txtColor">Quienes somos</Link>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link navHover  txtColor" href={home}>Contacto</a>
+                                <Link to='/' className="nav-link navHover  txtColor">Contacto</Link>
                             </li>
                             <li className="nav-item">
                                 <CartWidget/>                            

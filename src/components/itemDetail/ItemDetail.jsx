@@ -1,8 +1,21 @@
-
 import ItemCount from "../itemCount/ItemCount"
 import { redondeo } from "../../helper/productos"
+import { useState } from "react"
+import { Link } from "react-router-dom"
+import { useCartContext } from "../../context/CartContext"
+
 
 const ItemDetail = ({producto}) => {
+    const initial = 1
+    const origin = 'ItemDetail'
+    const [btn, setbtn] = useState()
+    const { addToCart } = useCartContext()
+
+    function agregarProdCarrito(count){
+        setbtn('carrito')
+        addToCart( {...producto, cantidad: count} )
+    }
+    
     return (
         <>
         <div className="d-flex justify-content-center">
@@ -12,7 +25,14 @@ const ItemDetail = ({producto}) => {
                     <div className="card-body flex-shrink-1 d-flex flex-column align-content-center justify-content-around border-bottom">
                         <h4 className="card-text text-center mt-1 altotexto">{producto.nombre}</h4>
                         <h4 className=" text-center mt-1">{redondeo(producto.precioventa)} c/u</h4>
-                        <ItemCount producto={producto}/>    
+                        { 
+                            btn ?
+                                <Link to='/cart'>
+                                    <button className="botonPersonalizado mt-1 w-100">Ir al carrito</button>
+                                </Link>
+                            :
+                            <ItemCount producto={producto} agregarProdCarrito={agregarProdCarrito} initial={initial} origin={origin}/>       
+                        }
                     </div>
                 </div>
                 <div>
@@ -29,5 +49,6 @@ const ItemDetail = ({producto}) => {
     </>
     )
 }
+
 
 export default ItemDetail

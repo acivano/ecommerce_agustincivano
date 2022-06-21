@@ -8,9 +8,9 @@ const Footer = () => {
                 <span>Derechos reservados ©</span>
             </div>
             <ul className="nav col-md-4 justify-content-end list-unstyled d-flex">
-                <li className="ms-3"><a class="txtColor" href="https://www.Facebook.com" target="_blank"><BsFacebook class="bi bi-facebook"></BsFacebook></a></li>
-                <li className="ms-3"><a class="txtColor" href="https://www.instagram.com" target="_blank"><BsInstagram class="bi bi-instagram"></BsInstagram></a></li>
-                <li className="ms-3"><a class="txtColor" href="https://www.Youtube.com" target="_blank"><BsYoutube class="bi bi-youtube"></BsYoutube></a></li>
+                <li className="ms-3"><a className="txtColor" href="https://www.Facebook.com" target="_blank"><BsFacebook className="bi bi-facebook"></BsFacebook></a></li>
+                <li className="ms-3"><a className="txtColor" href="https://www.instagram.com" target="_blank"><BsInstagram className="bi bi-instagram"></BsInstagram></a></li>
+                <li className="ms-3"><a className="txtColor" href="https://www.Youtube.com" target="_blank"><BsYoutube className="bi bi-youtube"></BsYoutube></a></li>
             </ul>
         </footer>
     )

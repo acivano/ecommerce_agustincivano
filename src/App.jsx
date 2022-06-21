@@ -7,22 +7,25 @@ import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 import Cart from './components/cart/Cart';
 import ItemDetailContainer from './components/itemDetailContainer/ItemDetailContainer';
 import Footer from './components/footer/Footer';
+import CartContextProvider from './context/CartContext';
 
 function App() {
   let saludo = 'Encontrá el medicamento'
   return (
-    <BrowserRouter>
-      <NavBar />
-      <Routes>
-        <Route index path="/" element={<ItemListContainer titulo={saludo}/>}/>  
-        <Route  path="/cart" element={<Cart titulo={saludo}/>}/>  
+    <CartContextProvider>
+      <BrowserRouter>
+        <NavBar />
+        <Routes>
+          <Route index path="/" element={<ItemListContainer titulo={saludo}/>}/>  
+          <Route  path="/cart" element={<Cart titulo={saludo}/>}/>  
 
-        <Route path="/detalle/:id" element={<ItemDetailContainer />}/>
-        <Route path="*" element={<Navigate to='/'/>}/>
+          <Route path="/detalle/:id" element={<ItemDetailContainer />}/>
+          <Route path="*" element={<Navigate to='/'/>}/>
 
-      </Routes>
-      <Footer/>
-    </BrowserRouter>
+        </Routes>
+        <Footer/>
+      </BrowserRouter>
+    </CartContextProvider>
   );
 }
 

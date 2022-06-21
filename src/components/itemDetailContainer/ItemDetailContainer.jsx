@@ -22,13 +22,11 @@ const ItemDetailContainer = () => {
     
         });
     }, []);
-    console.log(producto)
     if (producto === undefined) {
-        console.log('no definido')
         return (
             <main>
                 <section  className="container seccionDonacion">
-                    <div id="contenedorPadre" className="">
+                    <div id="contenedorPadre">
                         { loading ? 
                             <div className="text-center">
                                 <div className="spinner-border" role="status">
@@ -43,11 +41,10 @@ const ItemDetailContainer = () => {
             </main>
     )
     }else{
-        console.log('definido')
         return (
                 <main>
                     <section  className="container seccionDonacion">
-                        <div id="contenedorPadre" className="">
+                        <div id="contenedorPadre">
                             <ItemDetail  producto={producto}/>
                         </div>  
                     </section>

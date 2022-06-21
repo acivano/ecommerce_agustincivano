@@ -1,26 +1,32 @@
 import { useState } from "react"
+import { useCartContext } from "../../context/CartContext"
 
-function ItemCount ({producto}) {
-    const initial= 1
+
+function ItemCount ({producto, agregarProdCarrito, initial, origin}) {
     const [count, setCount] = useState(initial)
+    const {cart, precioTotal} = useCartContext()
 
-    function mostrar(idProducto, count){
-        console.log(`Se ha guardado ${count} unidad/uidades del item: '${idProducto}' en el carrito `)
+    const agregar = () => {
+        agregarProdCarrito(count)
     }
-
-
     const sumar = ()=> {
         if (count < producto.stockdisponible) {
             setCount(count + 1)
+            if(origin === 'Cart')
+            {
+                agregarProdCarrito(count + 1)
+            }
         }
     }
-
     const restar = ()=>{
-        if (count> initial) {
+        if (count > 1) {
             setCount(count - 1)
+            if(origin === 'Cart')
+            {
+                agregarProdCarrito(count - 1)
+            }
         }
     }
-
     return (
             <>
                 <div className="form-floating mb-3">
@@ -30,7 +36,13 @@ function ItemCount ({producto}) {
                         <button onClick={sumar} className="botonPersonalizado2 mt-1"> + </button>
                     </div>
                 </div>
-                <button onClick={mostrar(producto.id,count)}  className="botonPersonalizado mt-1">Agregar</button>
+                {(origin==='Cart')?
+                    <></>
+                    :
+                    <button onClick={agregar} className="botonPersonalizado mt-1">Agregar Producto</button>
+
+                
+                }
             </>
         )
     }

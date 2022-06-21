@@ -135,7 +135,7 @@ export function redondeo(numero) {
     });; 
 };
 
-export const productosPromise = (id, tipo, ) => {
+export const productosPromise = (id ) => {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
             if (id) {
