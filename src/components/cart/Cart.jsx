@@ -5,11 +5,12 @@ import { Link } from 'react-router-dom';
 
 const Cart = () => {
   const {cart, precioTotal, cantidadProductos, emptyCart} = useCartContext()
-
+  console.log('cart')
   return (
     <main>
-      { cantidadProductos() > 0 ?
 
+      { cantidadProductos() > 0 ?
+        
         <div className="d-flex flex-column justify-content-center">
           <div className="seccion_datos w-75 align-self-center">
             <div className="container d-flex flex-column justify-content-between mt-3">

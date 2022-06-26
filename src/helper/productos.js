@@ -46,6 +46,24 @@ const productosResponse =
             stockdisponible : 7 ,
             imgUrl : 'https://www.timberline.com.ar/3203-large_default/bravecto-comprimido-20-a-40-kg.jpg'
         }, 
+    
+    {
+        id : '0015',
+        nombre : 'Bravecto Gatos 1,2 a 2,8 Kg',
+        tipo : 'Gato',
+        laboratorio : 'Power',
+        precioventa : 3704.07,
+        stockdisponible : 3 ,
+        imgUrl : 'https://www.timberline.com.ar/4563-home_default/bravecto-gatos-12-a-28-kg.jpg'
+    },
+    
+    
+
+//HASTA ACA CARGADO
+
+
+
+
         {
             id : '0007',
             nombre : 'Frontline Plus 2 a 10 KG x 1 pip.',
@@ -117,16 +135,7 @@ const productosResponse =
             precioventa : 457.61,
             stockdisponible : 3 ,
             imgUrl : 'https://www.timberline.com.ar/991-home_default/pipeta-power-met-hasta-4-kg.jpg'
-        },
-        {
-            id : '0015',
-            nombre : 'Bravecto Gatos 1,2 a 2,8 Kg',
-            tipo : 'Gato',
-            laboratorio : 'Power',
-            precioventa : 3704.07,
-            stockdisponible : 3 ,
-            imgUrl : 'https://www.timberline.com.ar/4563-home_default/bravecto-gatos-12-a-28-kg.jpg'
-        } 
+        }
     ]
 export function redondeo(numero) {
     return (Math.round((numero * 100)) / 100).toLocaleString("es-CO", {

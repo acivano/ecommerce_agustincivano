@@ -19,16 +19,13 @@ function NavBar() {
                                 <Link to='/' className="nav-link navHover txtColor">Home</Link>
                             </li>
                             <li className="nav-item">
-                                <Link to='/' className="nav-link navHover  txtColor">Quiero Adoptar</Link>
-                            </li>
-                            <li className="nav-item">
                                 <Link to='/' className="nav-link navHover  txtColor" >Tienda medicamentos</Link>
                             </li>
                             <li className="nav-item">
-                                <Link to='/' className="nav-link navHover  txtColor">Quienes somos</Link>
+                                <Link to='/tipo/Perro' className="nav-link navHover  txtColor">Perro</Link>
                             </li>
                             <li className="nav-item">
-                                <Link to='/' className="nav-link navHover  txtColor">Contacto</Link>
+                                <Link to='/tipo/Gato' className="nav-link navHover  txtColor">Gato</Link>
                             </li>
                             <li className="nav-item">
                                 <CartWidget/>                            

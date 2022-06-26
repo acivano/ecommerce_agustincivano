@@ -1,17 +1,26 @@
 import ItemList from "../itemList/ItemList"
 import { useState, useEffect } from "react"
-import { productosPromise } from "../../helper/productos";
+import Loading from "../loading/Loading";
+import { collection, getDocs, getFirestore, query, where} from 'firebase/firestore'
+import { useParams } from "react-router";
 
 const ItemListContainer = ({titulo}) => {
+    const {tipoId} = useParams()
 
     const [productos, setProductos] = useState([])
     const [loading, setLoading] = useState(true)
+    
 
-    useEffect(() => {
-        productosPromise()
-        .then((resp) => {
-            setProductos(resp);
-        })
+    useEffect(()=>{
+        const db = getFirestore()
+        const queryCollection = collection(db, 'productos')
+        let queryProductos = ''
+        console.log(tipoId)
+        console.log (tipoId === undefined)
+        tipoId === undefined ?  queryProductos = queryCollection : queryProductos = query( queryCollection, where('tipo', '==', tipoId))
+        console.log(queryProductos)
+        getDocs(queryProductos)
+        .then(data => setProductos( data.docs.map( producto => ({id: producto.id, ...producto.data()} ))))
         .catch((err) => {
             console.log(`Error: ${err}`);
         })
@@ -20,7 +29,8 @@ const ItemListContainer = ({titulo}) => {
             let contenedorPadre =  document.getElementById("contenedorPadre");
             contenedorPadre.classList = 'd-flex flex-column align-content-center justify-content-start gap-4 flex-lg-row flex-lg-wrap mt-5'
         });
-    }, []);
+    }, [tipoId]);
+
     return (
         <main>
             <div className="d-flex justify-content-center">
@@ -29,11 +39,7 @@ const ItemListContainer = ({titulo}) => {
             <section  className="container seccionDonacion">
                 <div id="contenedorPadre" className="">
                     { loading ? 
-                        <div className="text-center">
-                            <div className="spinner-border" role="status">
-                                <span className="sr-only"></span>
-                            </div>
-                        </div>
+                        <Loading/>
                     :
                         <ItemList  productos={productos}/>
                     }

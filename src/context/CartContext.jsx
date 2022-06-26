@@ -49,7 +49,12 @@ const CartContextProvider = ({children}) => {
     }
 
     const cantidadProductos =() =>{
-        return cart.length
+        if (cart.length > 0) {
+            
+            return cart.reduce((acum, prod) => acum + prod.cantidad , 0)
+        }else{
+            return 0
+        }
     }
 
     return (
