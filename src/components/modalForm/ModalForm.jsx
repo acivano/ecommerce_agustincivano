@@ -27,7 +27,6 @@ export function ModalForm() {
             const nombre = product.nombre
             const cantidad = product.cantidad
             const precio = product.precioventa
-
             return{id, nombre, cantidad, precio}
         })
 
@@ -48,13 +47,15 @@ export function ModalForm() {
 
     return (
         <>
-        <ToastContainer position={'bottom-center'} className='ms-5'>
-            <Toast onClose={() => setShow(false)} show={show} delay={3000} autohide bg='success'>
-                <Toast.Header>
-                <strong className="me-auto">Alerta</strong>
-                </Toast.Header>
-                <Toast.Body className='Success'>{nombre}, tu id de compra es: {idOrden}</Toast.Body>
-            </Toast>
+        <ToastContainer position={'bottom-center'} className='mb-5'>
+            <div className='mb-5'>
+                <Toast onClose={() => setShow(false)} show={show} /*delay={3000} autohide*/ bg='success'>
+                    <Toast.Header>
+                    <strong className="me-auto">Alerta</strong>
+                    </Toast.Header>
+                    <Toast.Body className='Success'>{nombre}, tu código de compra es: <span className='fw-bold'>{idOrden}</span></Toast.Body>
+                </Toast>
+            </div>
         </ToastContainer>
         <Modal show={mostrarModal} onHide={handleClose}>
             <Modal.Header closeButton>
