@@ -4,12 +4,13 @@ import { Link } from 'react-router-dom';
 
 
 function NavBar() {
-    const home = '../src/index'
     return (
         <header>
             <nav className="navbar navbar-expand-lg navbar-light bg-white fixed-top shadow">
                 <div className="container">
-                    <a className="navbar-brand" href={home}><img  src={logoInicio} id="logo" alt="LogoRescatandoPatitas"/></a>
+                    <Link to='/' className="navbar-brand">
+                        <img  src={logoInicio} id="logo" alt="LogoRescatandoPatitas"/>
+                    </Link> 
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>

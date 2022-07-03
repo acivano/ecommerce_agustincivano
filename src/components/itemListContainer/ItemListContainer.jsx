@@ -14,11 +14,8 @@ const ItemListContainer = ({titulo}) => {
     useEffect(()=>{
         const db = getFirestore()
         const queryCollection = collection(db, 'productos')
-        let queryProductos = ''
-        console.log(tipoId)
-        console.log (tipoId === undefined)
-        tipoId === undefined ?  queryProductos = queryCollection : queryProductos = query( queryCollection, where('tipo', '==', tipoId))
-        console.log(queryProductos)
+        
+        let queryProductos = tipoId === undefined ?  queryCollection :  query( queryCollection, where('tipo', '==', tipoId))
         getDocs(queryProductos)
         .then(data => setProductos( data.docs.map( producto => ({id: producto.id, ...producto.data()} ))))
         .catch((err) => {

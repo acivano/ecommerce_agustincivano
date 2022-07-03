@@ -18,5 +18,4 @@ function Item ({producto}) {
         </>
     )
 }
-//<ItemCount producto={producto}/>    
 export default Item

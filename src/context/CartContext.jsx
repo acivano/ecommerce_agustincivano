@@ -7,6 +7,7 @@ export const useCartContext = ()=> useContext(CartContext)
 const CartContextProvider = ({children}) => {
     //Estados y Funciones
     const [cart, setCart] = useState([])
+    const [orden, setOrden] = useState([])
 
     const addToCart = (item) => {
         if (cart.some((element) => element.id === item.id )){
