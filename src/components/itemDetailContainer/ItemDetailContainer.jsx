@@ -13,7 +13,7 @@ const ItemDetailContainer = () => {
     useEffect(() => {
         const db = getFirestore()
         const queryProductos = doc(db, 'productos', id)
-        getDoc(queryProductos)//promesa
+        getDoc(queryProductos)
         .then(resp=> setProducto({id: resp.id, ...resp.data()}))
         .catch((err) => {
             console.log(`Error: ${err}`);
@@ -47,11 +47,7 @@ const ItemDetailContainer = () => {
                     </section>
                 </main>
         )
-
     }
 }
-
-
-
 
 export default ItemDetailContainer

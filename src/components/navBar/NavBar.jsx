@@ -16,17 +16,14 @@ function NavBar() {
                     </button>
                     <div className="collapse navbar-collapse" id="navbarNav">
                         <ul className="navbar-nav justify-content-end w-100 align-items-center">
-                            <li className="nav-item ">
-                                <Link to='/' className="nav-link navHover txtColor">Home</Link>
-                            </li>
                             <li className="nav-item">
                                 <Link to='/' className="nav-link navHover  txtColor" >Tienda medicamentos</Link>
                             </li>
                             <li className="nav-item">
-                                <Link to='/tipo/Perro' className="nav-link navHover  txtColor">Perro</Link>
+                                <Link to='/tipo/Perro' className="nav-link navHover  txtColor">Medicamentos para Perros</Link>
                             </li>
                             <li className="nav-item">
-                                <Link to='/tipo/Gato' className="nav-link navHover  txtColor">Gato</Link>
+                                <Link to='/tipo/Gato' className="nav-link navHover  txtColor">Medicamentos para Gatos</Link>
                             </li>
                             <li className="nav-item">
                                 <CartWidget/>                            

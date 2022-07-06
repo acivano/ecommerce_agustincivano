@@ -1,10 +1,8 @@
 import { useState } from "react"
-import { useCartContext } from "../../context/CartContext"
 
 
 function ItemCount ({producto, agregarProdCarrito, initial, origin}) {
     const [count, setCount] = useState(initial)
-    const {cart, precioTotal} = useCartContext()
 
     const agregar = () => {
         agregarProdCarrito(count)
@@ -40,8 +38,6 @@ function ItemCount ({producto, agregarProdCarrito, initial, origin}) {
                     <></>
                     :
                     <button onClick={agregar} className="botonPersonalizado mt-1">Agregar Producto</button>
-
-                
                 }
             </>
         )
