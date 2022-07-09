@@ -1,13 +1,13 @@
 import Item from "../item/Item"
 
-function ItemList ({productos}) {
+function ItemList ({products}) {
 
     return (
         <> 
             {
-                productos.length > 0 ?
-                productos.map((producto) => (
-                    <Item key={producto.id} producto ={producto}/>
+                products.length > 0 ?
+                products.map((product) => (
+                    <Item key={product.id} product ={product}/>
                 ))
                 :
                     <h3 className='w-100 text-center'>No se encontraron elementos</h3>

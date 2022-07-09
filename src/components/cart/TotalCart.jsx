@@ -1,15 +1,15 @@
 import { useCartContext } from "../../context/CartContext"
-import { redondeo } from "../../helper/productos"
+import { priceFormat } from "../../helper/methods"
 import { useModalFormContext } from "../../context/ModalFormContext";
 
 
-const CarritoTotal = () => {
-  const {precioTotal, emptyCart} = useCartContext()
-  const { activarModal } = useModalFormContext()
+const TotalCart = () => {
+  const {totalPrice, emptyCart} = useCartContext()
+  const { activateModal } = useModalFormContext()
 
-  function confirmarCompra(e) {
+  function confirm(e) {
     e.preventDefault()
-    activarModal()
+    activateModal()
   }
 
   return (
@@ -18,12 +18,12 @@ const CarritoTotal = () => {
             <div className='d-flex flex-column justify-content-center align-self-end w-50'>
               <div className="d-flex flex-column justify-content-center align-self-center">
                   <p>Total:</p>
-                  <h2 className='h1'>{redondeo(precioTotal())}</h2> 
+                  <h2 className='h1'>{priceFormat(totalPrice())}</h2> 
               </div>
               <div className="w-100">
                 <div className="d-flex flex-row justify-content-evenly align-self-end">
                     <button className="botonPersonalizado botonPersonalizadoCompra mt-2" onClick={emptyCart} >Vaciar carrito</button>
-                    <button className="botonPersonalizado botonPersonalizadoCompra mt-2" onClick={confirmarCompra} >Confirmar Compra</button>
+                    <button className="botonPersonalizado botonPersonalizadoCompra mt-2" onClick={confirm} >Confirmar Compra</button>
                 </div>
               </div>
             </div>
@@ -33,4 +33,4 @@ const CarritoTotal = () => {
 }
 
 
-export default CarritoTotal
+export default TotalCart

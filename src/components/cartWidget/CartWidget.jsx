@@ -3,12 +3,12 @@ import { Link } from 'react-router-dom';
 import { useCartContext } from "../../context/CartContext";
 
 function CartWidget() {
-    const {cantidadProductos} = useCartContext()
+    const {productCount} = useCartContext()
     return (
         <>
-            { (cantidadProductos() > 0) ?
+            { (productCount() > 0) ?
             
-                <Link to='/cart' className="nav-link navHover txtColorCarrito carrito"> <BsCartCheck/><span id="cantidadEnCarrito" className="badge rounded-pill bg-danger notificacion">{ cantidadProductos() }</span></Link>                            
+                <Link to='/cart' className="nav-link navHover txtColorCarrito carrito"> <BsCartCheck/><span id="cantidadEnCarrito" className="badge rounded-pill bg-danger notificacion">{ productCount() }</span></Link>                            
                 :
                 <Link to='/cart' className="nav-link navHover txtColorCarrito carrito"> <BsCartCheck/></Link>                            
 

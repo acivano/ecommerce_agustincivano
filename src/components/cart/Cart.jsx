@@ -1,15 +1,16 @@
 import { useCartContext } from "../../context/CartContext"
 import ItemCart from "../itemCart/ItemCart"
-import CarritoVacio from "./CarritoVacio"
-import CarritoTotal from "./CarritoTotal";
+import EmptyCart from "./EmptyCart"
+import TotalCart from "./TotalCart";
 import { ModalForm } from "../modalForm/ModalForm";
 
 
 const Cart = () => {
-  const {cart, cantidadProductos} = useCartContext()
+  const {cart, productCount} = useCartContext()
   return (
     <main>
-      { cantidadProductos() > 0 ?
+      
+      { productCount() > 0 ?
         
         <div className="d-flex flex-column justify-content-center">
           <div className="seccion_datos w-75 align-self-center">
@@ -20,10 +21,10 @@ const Cart = () => {
                   )}
             </div>
           </div>
-          <CarritoTotal/>
+          <TotalCart/>
         </div>
         :
-        <CarritoVacio/>
+        <EmptyCart/>
       }
       <ModalForm/>
     </main>

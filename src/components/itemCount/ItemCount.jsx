@@ -1,27 +1,27 @@
 import { useState } from "react"
 
 
-function ItemCount ({producto, agregarProdCarrito, initial, origin}) {
+function ItemCount ({product, addProductToCart, initial, origin}) {
     const [count, setCount] = useState(initial)
 
-    const agregar = () => {
-        agregarProdCarrito(count)
+    const add = () => {
+        addProductToCart(count)
     }
-    const sumar = ()=> {
-        if (count < producto.stockdisponible) {
+    const addOne = ()=> {
+        if (count < product.stockdisponible) {
             setCount(count + 1)
             if(origin === 'Cart')
             {
-                agregarProdCarrito(count + 1)
+                addProductToCart(count + 1)
             }
         }
     }
-    const restar = ()=>{
+    const subtractOne = ()=>{
         if (count > 1) {
             setCount(count - 1)
             if(origin === 'Cart')
             {
-                agregarProdCarrito(count - 1)
+                addProductToCart(count - 1)
             }
         }
     }
@@ -29,15 +29,15 @@ function ItemCount ({producto, agregarProdCarrito, initial, origin}) {
             <>
                 <div className="form-floating mb-3">
                     <div className="d-flex justify-content-center">
-                        <button onClick={restar} className="botonPersonalizado2 mt-1"> - </button>
+                        <button onClick={subtractOne} className="botonPersonalizado2 mt-1"> - </button>
                         <p className="botonPersonalizado2 mt-1 w-100">{count}</p>
-                        <button onClick={sumar} className="botonPersonalizado2 mt-1"> + </button>
+                        <button onClick={addOne} className="botonPersonalizado2 mt-1"> + </button>
                     </div>
                 </div>
                 {(origin==='Cart')?
                     <></>
                     :
-                    <button onClick={agregar} className="botonPersonalizado mt-1">Agregar Producto</button>
+                    <button onClick={add} className="botonPersonalizado mt-1">Agregar Producto</button>
                 }
             </>
         )

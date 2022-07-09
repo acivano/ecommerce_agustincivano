@@ -1,19 +1,19 @@
 import ItemCount from "../itemCount/ItemCount"
-import { redondeo } from "../../helper/productos"
+import { priceFormat } from "../../helper/methods"
 import { useState } from "react"
 import { Link } from "react-router-dom"
 import { useCartContext } from "../../context/CartContext"
 
 
-const ItemDetail = ({producto}) => {
+const ItemDetail = ({product}) => {
     const initial = 1
     const origin = 'ItemDetail'
     const [btn, setbtn] = useState()
     const { addToCart } = useCartContext()
 
-    function agregarProdCarrito(count){
+    function addProductToCart(count){
         setbtn('carrito')
-        addToCart( {...producto, cantidad: count} )
+        addToCart( {...product, cantidad: count} )
     }
     
     return (
@@ -21,17 +21,17 @@ const ItemDetail = ({producto}) => {
         <div className="d-flex justify-content-center">
             <div className="seccion_datos w-75">
                 <div className="card-body d-flex align-content-center justify-content-center pb-0 w-100">
-                    <img className="img-fluid-70 border-end border-bottom w-100" src={producto.imgUrl} alt="ImgProd"/>
+                    <img className="img-fluid-70 border-end border-bottom w-100" src={product.imgUrl} alt="ImgProd"/>
                     <div className="card-body flex-shrink-1 d-flex flex-column align-content-center justify-content-around border-bottom">
-                        <h4 className="card-text text-center mt-1 altotexto">{producto.nombre}</h4>
-                        <h4 className=" text-center mt-1">{redondeo(producto.precioventa)} c/u</h4>
+                        <h4 className="card-text text-center mt-1 altotexto">{product.nombre}</h4>
+                        <h4 className=" text-center mt-1">{priceFormat(product.precioventa)} c/u</h4>
                         { 
                             btn ?
                                 <Link to='/cart'>
                                     <button className="botonPersonalizado mt-1 w-100">Ir al carrito</button>
                                 </Link>
                             :
-                            <ItemCount producto={producto} agregarProdCarrito={agregarProdCarrito} initial={initial} origin={origin}/>       
+                            <ItemCount product={product} addProductToCart={addProductToCart} initial={initial} origin={origin}/>       
                         }
                     </div>
                 </div>

@@ -9,43 +9,53 @@ import Toast from 'react-bootstrap/Toast';
 import ToastContainer from 'react-bootstrap/ToastContainer';
 
 export function ModalForm() {
-    const {mostrarModal, ocultarModal} = useModalFormContext()
-    const [nombre, setNombre] = useState('')
-    const [correo, setCorreo] = useState('')
-    const [telefono, setTelefono] = useState('')
-    const {cart, precioTotal, emptyCart} = useCartContext()
+    const {showModal, hideModal} = useModalFormContext()
+    const [name, setName] = useState('')
+    const [email, setEmail] = useState('')
+    const [phone, setPhone] = useState('')
+    const {cart, totalPrice, emptyCart} = useCartContext()
     const [show, setShow] = useState(false);
     const [idOrden, setIdOrden] = useState('');
+    const [validated, setValidated] = useState(false);
+
+    const handleSubmit = (event) => {
+        const form = event.currentTarget;
+        if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+        }else{
+            event.preventDefault();
+            confirmarCompra()
+        }
+        setValidated(true);
+    };
 
     function confirmarCompra(e) {
-        
-        if (nombre !== '' && correo.includes("@") && telefono !== '') {  
-            let order = {}
-            order.buyer = {name:nombre, email:correo, phone:telefono}
-            order.total = precioTotal()
-            order.items = cart.map(product =>{
-                const id = product.id
-                const nombre = product.nombre
-                const cantidad = product.cantidad
-                const precio = product.precioventa
-                return{id, nombre, cantidad, precio}
-            })
-    
-            const db = getFirestore()
-            const orderCollection = collection(db, "orders")
-            addDoc(orderCollection, order)
-            .then(resp =>  {
-                setIdOrden(resp.id)
-                setShow(true)
-            })
-            .finally(()=> {
-                actualizarStock()
-                emptyCart()
-                handleClose()
-                
-            })
+        let order = {}
+        order.buyer = {name:name, email:email, phone:phone}
+        order.total = totalPrice()
+        order.items = cart.map(product =>{
+            const id = product.id
+            const name = product.nombre
+            const count = product.cantidad
+            const price = product.precioventa
+            return{id, name, count, price}
+        })
+
+        const db = getFirestore()
+        const orderCollection = collection(db, "orders")
+        addDoc(orderCollection, order)
+        .then(resp =>  {
+            setIdOrden(resp.id)
+            setShow(true)
+        })
+        .finally(()=> {
+            actualizarStock()
+            emptyCart()
+            handleClose()
             
-        }
+        })
+        
     }
     async function actualizarStock() {
         const db = getFirestore()
@@ -61,10 +71,12 @@ export function ModalForm() {
                     stockdisponible : res.data().stockdisponible - cart.find(prd => prd.id === res.id).cantidad
                 }))
             )
-        .catch(err => console.log(err))
+        .catch(err =>             
+            console.log(`Error: ${err}`)
+        )
         batch.commit()
     }
-    const handleClose = () => ocultarModal();
+    const handleClose = () => hideModal();
 
     return (
         <>
@@ -74,16 +86,16 @@ export function ModalForm() {
                     <Toast.Header>
                     <strong className="me-auto">Alerta</strong>
                     </Toast.Header>
-                    <Toast.Body className='Success'>{nombre}, tu código de compra es: <span className='fw-bold'>{idOrden}</span></Toast.Body>
+                    <Toast.Body className='Success'>{name}, tu código de compra es: <span className='fw-bold'>{idOrden}</span></Toast.Body>
                 </Toast>
             </div>
         </ToastContainer>
-        <Modal show={mostrarModal} onHide={handleClose}>
+        <Modal show={showModal} onHide={handleClose}>
             <Modal.Header closeButton>
             <Modal.Title>Datos de contacto</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-            <Form>
+            <Form noValidate validated={validated} onSubmit={handleSubmit}>
                 <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                     <Form.Label>Nombre</Form.Label>
                     <Form.Control 
@@ -91,7 +103,7 @@ export function ModalForm() {
                         type="text"
                         placeholder="Nombre"
                         autoFocus
-                        onChange={event =>  setNombre(event.target.value)}
+                        onChange={event =>  setName(event.target.value)}
                         
                     />
                     <Form.Label>Email address</Form.Label>
@@ -100,27 +112,20 @@ export function ModalForm() {
                         type="email"
                         placeholder="name@example.com"
                         autoComplete="username"
-                        onChange={event =>  setCorreo(event.target.value)}                    
+                        onChange={event =>  setEmail(event.target.value)}                    
                     />
                     <Form.Label>Telefono</Form.Label>
                     <Form.Control
                         required
                         type="tel"
                         placeholder="111111"  
-                        onChange={event =>  setTelefono(event.target.value)}                    
+                        onChange={event =>  setPhone(event.target.value)}                    
                     />
                 </Form.Group>            
-            <Button variant="secondary" onClick={handleClose}>
-                Cancelar
-            </Button>
-            <Button type="submit" variant="primary" onClick={confirmarCompra}>
-                Finalizar Compra
-            </Button>
+                <Button variant="secondary" onClick={handleClose}>Cancelar</Button>
+                <Button type="submit" variant="primary">Finalizar Compra</Button>
             </Form>
             </Modal.Body>
-            <Modal.Footer>
-
-            </Modal.Footer>
         </Modal>
         </>
     );

@@ -5,21 +5,21 @@ const ModalFormContext = createContext([])
 export const useModalFormContext = ()=> useContext(ModalFormContext)
 
 const ModalFormContextProvider = ({children}) => {
-    //Estados y Funciones
+    //States & Functions
 
-    const [mostrarModal, setMostrarModal] = useState(false)
+    const [showModal, setShowModal] = useState(false)
 
-    const ocultarModal = () =>{
-        setMostrarModal(false)
+    const hideModal = () =>{
+        setShowModal(false)
     }
-    const activarModal = () =>{
-        setMostrarModal(true)
+    const activateModal = () =>{
+        setShowModal(true)
     }
     return (
         <ModalFormContext.Provider value={{
-            mostrarModal,
-            ocultarModal,
-            activarModal
+            showModal,
+            hideModal,
+            activateModal
         }}>
             {children}
         </ModalFormContext.Provider>

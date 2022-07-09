@@ -7,14 +7,14 @@ import { doc, getDoc, getFirestore } from "@firebase/firestore";
 
 const ItemDetailContainer = () => {
     const {id} = useParams()
-    const [producto, setProducto] = useState()
+    const [product, setProduct] = useState()
     const [loading, setLoading] = useState(true)
     
     useEffect(() => {
         const db = getFirestore()
-        const queryProductos = doc(db, 'productos', id)
-        getDoc(queryProductos)
-        .then(resp=> setProducto({id: resp.id, ...resp.data()}))
+        const queryProducts = doc(db, 'productos', id)
+        getDoc(queryProducts)
+        .then(resp => resp.data() && setProduct({id: resp.id, ...resp.data()})) 
         .catch((err) => {
             console.log(`Error: ${err}`);
         })
@@ -22,32 +22,25 @@ const ItemDetailContainer = () => {
             setLoading(false)
         });
     }, []);
-
-    if (producto === undefined) {
         return (
             <main>
                 <section  className="container seccionDonacion">
                     <div id="contenedorPadre">
-                        { loading ? 
-                            <Loading/>
-                        :
-                        <p className="text-center">Producto No encontrado</p>
-                        }
+                        { 
+                            !product ?  
+                        
+                                (loading ? 
+                                    <Loading/>
+                                :
+                                    <p className="text-center">Producto No encontrado</p>
+                                )
+                                :
+                                <ItemDetail  product={product}/>
+                            }
                     </div>  
                 </section>
             </main>
     )
-    }else{
-        return (
-                <main>
-                    <section  className="container seccionDonacion">
-                        <div id="contenedorPadre">
-                            <ItemDetail  producto={producto}/>
-                        </div>  
-                    </section>
-                </main>
-        )
-    }
 }
 
 export default ItemDetailContainer
